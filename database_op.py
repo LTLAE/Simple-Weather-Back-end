@@ -2,7 +2,7 @@ import mysql.connector
 from datetime import datetime
 
 # current weather table:
-# city_name char(50) primary key not null,
+# city_name char(50) not null,
 # region char(50),
 # weather_main char(50),
 # weather_description char(50),
@@ -57,6 +57,23 @@ def db_get_current_weather(lat, lon):
     cursor.close()
     db.close()
     return current
+
+# 5d forecast table:
+# city_name char(50) not null,
+# lat float,
+# lon float,
+# region char(50),
+# weather_main char(50),
+# weather_description char(50),
+# temp float,
+# temp_feels_like float,
+# pressure int,
+# humidity int,
+# visibility int,
+# wind_speed float,
+# wind_deg float,
+# forecast_time datetime,
+# last_updated datetime
 
 def db_add_5d_weather(data_5d):
     db = mysql.connector.connect(
