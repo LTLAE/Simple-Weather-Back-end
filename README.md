@@ -3,8 +3,8 @@
 </div>  
 
 ## Team members    
-水流正在引导 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -  UI designer, Test engineer  
-Fill name here &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - PM, Frontend Developer  
+水流正在引导 -  UI designer, Test engineer  
+Fill name here  - PM, Frontend Developer  
 Longtail Amethyst Eralbrunia - Architecture designer, Backend Developer  
 
 ## Background  
