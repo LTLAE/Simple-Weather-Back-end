@@ -12,13 +12,15 @@ def search_city(city_name):
     location_response = requests.get(location_url)
     location_data = location_response.json()
     if location_response.status_code == 200:
+        search_results = []
         for timer in range(len(location_data)):
-            # for demo only
-            print(timer + 1, f" {location_data[timer]['name']}, {location_data[timer].get('state', ' ')}, {location_data[timer]['country']}")
-            # this may change after we defined data structure
+            search_results.append({
+                'name': location_data[timer]['name'],
+                'state': location_data[timer].get('state', ' '),
+                'country': location_data[timer]['country']
+            })
 
-        user_selection = int(input("Select a location: ")) - 1
-        return location_data[user_selection]['lat'], location_data[user_selection]['lon']
+        return search_results
 
     else:
         print(f"Error: {location_data['message']}")
