@@ -3,9 +3,9 @@
 </div>  
 
 ## Team members    
-Xu Aihui &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-  UI designer, Test engineer  
-Yang Jiayan &nbsp;&nbsp;- PM, Frontend Developer  
-Ye Jianyu &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Architecture designer, Backend Developer  
+水流正在引导 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -  UI designer, Test engineer  
+Fill name here &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - PM, Frontend Developer  
+Longtail Amethyst Eralbrunia - Architecture designer, Backend Developer  
 
 ## Background  
 Nowadays, weather forecast is a vital to our daily life. Knowing what the weather will be like in the next few hours or days can help us plan or adjust our activities. We expect to give users a convenient and pleasant experience when they check the weather.  
