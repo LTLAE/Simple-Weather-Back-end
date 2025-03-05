@@ -73,10 +73,36 @@ def get_5d_weather(lat, lon):
     db_result = db_get_5d_weather(lat, lon)
     if db_result:   # found in db
         # check if the data is expired
-        last_updated = db_result[0][15]  # 15: last_updated
+        last_updated = db_result[0][14]  # 14: last_updated
         time_elapsed = datetime.now() - last_updated
-        if time_elapsed.total_seconds() < 43200: # 12 hours
+        if time_elapsed.total_seconds() < 43200:  # 12 hours
             print("Get data from database successfully.")
-            # only return data after current time
-            return [weather for weather in db_result if weather[14] > current_time]  # 14: forecast_time
+            # get rid of past data
+            while True:
+                forecast_time = db_result[0][13]  # 13: forecast_time
+                if forecast_time > current_time:
+                    break
+                db_result.remove(db_result[0])
+
+            return db_result
+
+    # not cached or expired, fetch data from api
+    url_5d = f'https://api.openweathermap.org/data/2.5/forecast?lat={lat}&lon={lon}&appid={api}'
+    response_5d = requests.get(url_5d)
+    data_5d = response_5d.json()
+    if response_5d.status_code == 200:
+        print("Get data from api successfully. Adding to database.")
+        # get rid of past data
+        while True:
+            forecast_time = datetime.strptime(data_5d['list'][0]['dt_txt'], '%Y-%m-%d %H:%M:%S')
+            if forecast_time > current_time:
+                break
+            data_5d['list'].remove(data_5d['list'][0])
+        # add to db
+        db_add_5d_weather(data_5d)
+
+    else:
+        print(f"Error: {data_5d['message']}")
+
+    return data_5d
 

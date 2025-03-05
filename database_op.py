@@ -58,7 +58,7 @@ def db_get_current_weather(lat, lon):
     db.close()
     return current
 
-def db_add_5d_weather(city_name, lat, lon, region, weather_main, weather_description, temp, temp_feels_like, pressure, humidity, visibility, wind_speed, wind_deg, forecast_time):
+def db_add_5d_weather(data_5d):
     db = mysql.connector.connect(
         host="127.0.0.1",
         user="backend",
@@ -68,12 +68,15 @@ def db_add_5d_weather(city_name, lat, lon, region, weather_main, weather_descrip
     cursor = db.cursor()
     # insert current weather info
     last_updated = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-    lat = round(lat, 4)
-    lon = round(lon, 4)
+    lat = round(data_5d['city']['coord']['lat'], 4)
+    lon = round(data_5d['city']['coord']['lon'], 4)
     try:
-        cursor.execute(f"delete from current_weather where city_name = '{city_name}'")
-        cursor.execute(f"insert into current_weather values ('{city_name}', {lat}, {lon}, '{region}', '{weather_main}', '{weather_description}', {temp}, {temp_feels_like}, {pressure}, {humidity}, {visibility}, {wind_speed}, {wind_deg}, {forecast_time}, '{last_updated}'); commit;")
-        print("Inserted.")
+        cursor.execute(f"delete from 5d_forecast where city_name = '{data_5d['city']['name']}'")
+        for timer in range(len(data_5d['list'])):
+            cursor.execute(f"insert into 5d_forecast values ('{data_5d['city']['name']}', {lat}, {lon}, '{data_5d['city']['country']}', '{data_5d['list'][timer]['weather'][0]['main']}', '{data_5d['list'][timer]['weather'][0]['description']}', {data_5d['list'][timer]['main']['temp']}, {data_5d['list'][timer]['main']['feels_like']}, {data_5d['list'][timer]['main']['pressure']}, {data_5d['list'][timer]['main']['humidity']}, {data_5d['list'][timer].get('visibility', 0)}, {data_5d['list'][timer]['wind']['speed']}, {data_5d['list'][timer]['wind']['deg']}, '{data_5d['list'][timer]['dt_txt']}', '{last_updated}');")
+
+        cursor.execute("commit;")
+        print(len(data_5d['list']), " forecasts inserted.")
     except Exception as e:
         print(f"Error: {e}")
         # close connection
