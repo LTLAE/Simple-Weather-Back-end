@@ -15,13 +15,27 @@ CORS(app)
 # temperature = round(current_weather[0][6] - 273.15, 1)
 # print(f"Temperature: {temperature} °C")
 
-@app.route('/getcurrentweather', methods=['POST'])
-def send_current_weather():
+@app.route('/search_city', methods=['POST'])
+def search_city():
     receive = request.get_json()
     city = receive['city']
-    lat, lon = search_city(city)
+    return jsonify(search_city(city))
+
+@app.route('/get_current_weather', methods=['POST'])
+def send_current_weather():
+    receive = request.get_json()
+    lat = receive['lat']
+    lon = receive['lon']
     current_weather = get_current_weather(lat, lon)
     return jsonify(current_weather)
+
+@app.route('/get_5d_weather', methods=['POST'])
+def send_5d_weather():
+    receive = request.get_json()
+    lat = receive['lat']
+    lon = receive['lon']
+    weather_5d = get_5d_weather(lat, lon)
+    return jsonify(weather_5d)
 
 
 if __name__ == '__main__':
