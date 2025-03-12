@@ -4,7 +4,7 @@
 
 ## Team members    
 水流正在引导 -  UI designer, Test engineer  
-Fill name here  - PM, Frontend Developer  
+yangjiayan123  - PM, Frontend Developer  
 Longtail Amethyst Eralbrunia - Architecture designer, Backend Developer  
 
 ## Background  
