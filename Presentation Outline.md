@@ -28,6 +28,8 @@ We use mind map to build our Work Breakdown Structure. XMind online is capable o
 - Burn down chart  
 We are still discussing the workflow to update the chart.
 <!-- Can we make a Burn down chart before the first pre?-->
+- Excel
+Simple gannt chart and task list for time management.  
 
 ### 3.2. Issues and solutions by now  <!-- 1min-->
 **Issue 1**  
