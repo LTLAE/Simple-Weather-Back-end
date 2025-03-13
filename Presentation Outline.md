@@ -1,20 +1,44 @@
 # Presentation Outline  
 ## 1. Software Introduction  <!-- Short intro, 1 min is ok-->
-
+<!-- can we copy some paragraph from proposal aka README.md?-->
 
 ## 2. Software Structure  <!-- about 6 min-->
+General workflow:  <!-- We should make it into a graph-->
+1. User input city name.  
+2. Frontend sends search request to backend.  
+3. Backend search city to get a possible city list, containing location info.  
+4. Pass this list to frontend.  
+5. User Select a city and request weather data.  
+6. Search DB first, if expired, fetch from API.  
+7. Return full weather data to frontend and show to user.  
+
 ### 2.1. Frontend  
 _(Brief introduction of codes and functions)_  
 
 ### 2.2. Backend  
-_(Brief introduction of codes and functions)_  
+- Flask server to communicate with frontend.  
+- Python as main language. As it is already widely used and convenient for this project.  
+- Backend is highly modularized. Easy to maintain and expand.
+- Get data from DB first, if expired (60s / 12hrs), fetch from API.
+- Data structure and process is well-designed to enhance efficiency.  
 
 ### 2.3. Database  
-
+- Use mySQL  
+- For test, I deployed a mySQL Docker on my Workstation. In the future we may consider using cloud services.  
+- SQL as cache since API has limitations.  
+- Two tables: current & 5d forecast, containing all necessary data.
 
 ## 3. Stage results  
 ### 3.1. Group meetings  <!-- about 1-2 min-->
 **Acceptance criteria**  
+Frontend:  
+
+Backend:  
+Most of the functions receive simple inputs and return a list.  
+eg.  
+`get_city_list(city_name: str) -> List[Name: str, State: str, Region: str]`  
+`get_current_weather(lat: float, lon: float) -> List[Weather information]`  
+Since they are highly modularized, maintaining and expanding is easy.  
 
 **Tools we decided to use**  
 - WeChat  
@@ -52,3 +76,20 @@ Solution: Since the frontend is in design and the database is still under constr
 
 **Gantt chart** <!-- Show with little talks, 1-2 min-->
 <!-- Fake pass, fake future. -->
+Progress we have made (time may not accurate):  
+Week 1-2  
+Form a group.  
+Week 3  
+Decide the orientation.  
+Week 4-5  
+Group meetings.  
+Register API & API testing.  
+Backend module design & database design.  
+DB & Backend data structure design & alignment.  
+Week 6-7  
+Group meetings.  
+Frontend demo.  
+Backend module design & database build.  
+Frontend & Backend data structure design & alignment.  
+Week 8  
+Prepare for stage pre.
