@@ -17,7 +17,9 @@ def search_city(city_name):
             search_results.append({
                 'name': location_data[timer]['name'],
                 'state': location_data[timer].get('state', ' '),
-                'country': location_data[timer]['country']
+                'country': location_data[timer]['country'],
+                'lat': location_data[timer]['lat'],
+                'lon': location_data[timer]['lon']
             })
 
         return search_results

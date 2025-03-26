@@ -36,3 +36,5 @@ def fetch_from_AI(api, platform, sys_prompt, user_prompt):
     if response:
         print(response.choices[0].message.content)
         return response.choices[0].message.content
+
+# if excepting model "remember context", user_prompt = last_user_prompt + this_user_prompt
