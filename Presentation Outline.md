@@ -43,7 +43,7 @@ Since they are highly modularized, maintaining and expanding is easy.
 **Tools we decided to use**  
 - WeChat  
 The main communication tool.  
-- Gitee as VCS  
+- Gitee as VCS gann 
 _Put screenshot and link into slides._  
 After discussion, we decided to use Gitee as our VCS. Since some of our group members living in China Mainland, comparing to GitHub, Gitee is more stable and convenient.  
 - XMind online  
