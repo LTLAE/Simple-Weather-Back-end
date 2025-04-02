@@ -17,6 +17,7 @@ def send_current_weather():
     lat = receive['lat']
     lon = receive['lon']
     current_weather = get_current_weather(lat, lon)
+    current_weather += [AI_recommendation(current_weather)]
     return jsonify(current_weather)
 
 @app.route('/get_5d_weather', methods=['POST'])

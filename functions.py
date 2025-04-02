@@ -1,4 +1,6 @@
 import requests
+
+from ai_recommendation import fetch_from_AI
 from database_op import *
 
 # read api from file
@@ -110,3 +112,7 @@ def get_5d_weather(lat, lon):
 
     return data_5d
 
+def AI_recommendation(weather_data_raw):
+    recommend_prompt = "你是一位专业的天气数据分析师，你正在向大众展示分析天气。稍后我会给你提供一些天气信息，总结这些天气数据的特点，给出大众准确且恰当的穿衣建议和出行建议。你总共需要回复两句话，第一句话包含穿衣建议，如衣服类型、颜色等；第二句话包含出行建议，如适合的户外活动、出行方式等。"
+    weather_data_raw = str(weather_data_raw)
+    return fetch_from_AI("DS", recommend_prompt, weather_data_raw)
