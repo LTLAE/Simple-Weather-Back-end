@@ -9,7 +9,7 @@ CORS(app)
 def search_city():
     receive = request.get_json()
     city = receive['city']
-    return jsonify(search_city(city))
+    return jsonify(get_city_list(city))
 
 @app.route('/get_current_weather', methods=['POST'])
 def send_current_weather():

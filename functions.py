@@ -8,7 +8,7 @@ with open('OpenWeatherMapAPI.txt', 'r') as f:
     api = f.read()
 
 
-def search_city(city_name):
+def get_city_list(city_name):
     # get latitude and longitude (geocoding)
     location_url = f'http://api.openweathermap.org/geo/1.0/direct?q={city_name}&limit={5}&appid={api}'
     location_response = requests.get(location_url)
