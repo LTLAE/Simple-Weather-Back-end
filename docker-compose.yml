@@ -1,11 +1,31 @@
 version: '3.8'
 services:
-  web:
+  mysql:
+    image: mysql:latest
+    container_name: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: SE252_sql_pw*
+      MYSQL_DATABASE: weather
+      MYSQL_USER: backend
+      MYSQL_PASSWORD: Back3nd@LTLAE
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+
+  backend:
     build: .
+    container_name: backend
+    environment:
+      DB_HOST: "mysql"
+      DB_USER: "backend"
+      DB_PASSWORD: "Back3nd@LTLAE"
+      DB_NAME: "weather"
     ports:
       - "5000:5000"
-    environment:
-      DB_HOST: 127.0.0.1
-      DB_USER: backend
-      DB_PASSWORD: Back3nd@LTLAE
-      DB_NAME: weather
+    depends_on:
+      - mysql
+
+networks:
+  mynetwork:
+    driver: bridge

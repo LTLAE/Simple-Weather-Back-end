@@ -2,19 +2,32 @@ import mysql.connector
 import os
 from datetime import datetime
 
-db_host = os.getenv('DB_HOST')
-db_user = os.getenv('DB_USER')
-db_password = os.getenv('DB_PASSWORD')
-db_name = os.getenv('DB_NAME')
-# if not run in docker, use default values
-if db_host is None:
+# for test
+
+test_env = False
+if test_env:
     db_host = "127.0.0.1"
-if db_user is None:
     db_user = "backend"
-if db_password is None:
     db_password = "Back3nd@LTLAE"
-if db_name is None:
     db_name = "weather"
+else:
+    db_host = os.getenv('DB_HOST')
+    db_user = os.getenv('DB_USER')
+    db_password = os.getenv('DB_PASSWORD')
+    db_name = os.getenv('DB_NAME')
+    print("Database environment:\nHost: ", db_host, "\nUser: ", db_user, "\nPassword: ", db_password, "\nDatabase: ", db_name)
+    if db_host is None:
+        print("Can't find DB_HOST, exiting...")
+        exit(1)
+    if db_user is None:
+        print("Can't find DB_USER, exiting...")
+        exit(1)
+    if db_password is None:
+        print("Can't find DB_PASSWORD, exiting...")
+        exit(1)
+    if db_name is None:
+        print("Can't find DB_NAME, exiting...")
+        exit(1)
 
 # current weather table:
 # city_name char(50) not null,
@@ -57,12 +70,7 @@ def db_add_current_weather(city_name, lat, lon, region, weather_main, weather_de
 
 def db_get_current_weather(lat, lon):
     # connect to db
-    db = mysql.connector.connect(
-        host=db_host,
-        user=db_user,
-        password=db_password,
-        database=db_name
-    )
+    db = mysql.connector.connect(host=db_host, user=db_user, password=db_password, database=db_name)
     cursor = db.cursor()
     # match latitude and longitude
     # current weather
