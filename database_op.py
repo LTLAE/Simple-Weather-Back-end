@@ -1,5 +1,20 @@
 import mysql.connector
+import os
 from datetime import datetime
+
+db_host = os.getenv('DB_HOST')
+db_user = os.getenv('DB_USER')
+db_password = os.getenv('DB_PASSWORD')
+db_name = os.getenv('DB_NAME')
+# if not run in docker, use default values
+if db_host is None:
+    db_host = "127.0.0.1"
+if db_user is None:
+    db_user = "backend"
+if db_password is None:
+    db_password = "Back3nd@LTLAE"
+if db_name is None:
+    db_name = "weather"
 
 # current weather table:
 # city_name char(50) not null,
@@ -20,10 +35,10 @@ from datetime import datetime
 def db_add_current_weather(city_name, lat, lon, region, weather_main, weather_description, temp, temp_feels_like, pressure, humidity, visibility, wind_speed, wind_deg, sunrise, sunset):
     # connect to db
     db = mysql.connector.connect(
-        host="127.0.0.1",
-        user="backend",
-        password="Back3nd@LTLAE",
-        database="weather"
+        host=db_host,
+        user=db_user,
+        password=db_password,
+        database=db_name
     )
     cursor = db.cursor()
     # insert current weather info
@@ -43,10 +58,10 @@ def db_add_current_weather(city_name, lat, lon, region, weather_main, weather_de
 def db_get_current_weather(lat, lon):
     # connect to db
     db = mysql.connector.connect(
-        host="127.0.0.1",
-        user="backend",
-        password="Back3nd@LTLAE",
-        database="weather"
+        host=db_host,
+        user=db_user,
+        password=db_password,
+        database=db_name
     )
     cursor = db.cursor()
     # match latitude and longitude
@@ -77,10 +92,10 @@ def db_get_current_weather(lat, lon):
 
 def db_add_5d_weather(data_5d):
     db = mysql.connector.connect(
-        host="127.0.0.1",
-        user="backend",
-        password="Back3nd@LTLAE",
-        database="weather"
+        host=db_host,
+        user=db_user,
+        password=db_password,
+        database=db_name
     )
     cursor = db.cursor()
     # insert current weather info
@@ -103,10 +118,10 @@ def db_add_5d_weather(data_5d):
 def db_get_5d_weather(lat, lon):
     # connect to db
     db = mysql.connector.connect(
-        host="127.0.0.1",
-        user="backend",
-        password="Back3nd@LTLAE",
-        database="weather"
+        host=db_host,
+        user=db_user,
+        password=db_password,
+        database=db_name
     )
     cursor = db.cursor()
     # match latitude and longitude
