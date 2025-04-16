@@ -17,6 +17,9 @@ def send_current_weather():
     lat = receive['lat']
     lon = receive['lon']
     current_weather = get_current_weather(lat, lon)
+    # I don't know why it would sometimes return a dict instead of a list
+    if isinstance(current_weather, dict):
+        current_weather = [current_weather]
     current_weather.append([AI_recommendation(current_weather)])
     return jsonify(current_weather)
 
