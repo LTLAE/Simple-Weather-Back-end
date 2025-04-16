@@ -25,6 +25,14 @@ services:
       - "5000:5000"
     depends_on:
       - mysql
+    entrypoint: >
+      sh -c "if [ ! -f /app/DSapi.txt ]; then
+                echo 'Error: DSapi.txt not found!' && exit 1;
+             fi;
+             if [ ! -f /app/OpenWeatherMapAPI.txt ]; then
+                echo 'Error: DSapi2.txt not found!' && exit 1;
+             fi;
+             exec python app.py"
 
 networks:
   mynetwork:
